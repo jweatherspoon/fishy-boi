@@ -1,10 +1,13 @@
-from logging.config import listen
+import sys 
 import time 
 from pynput.keyboard import Listener, Key, Controller
 
 keyboard = Controller()
 
 def on_pressed(key):
+  if key == Key.esc:
+    sys.exit()
+    
   try:
     number = int(key.char)
     if number >= 0 and number <= 9:
