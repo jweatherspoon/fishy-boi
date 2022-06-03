@@ -4,29 +4,46 @@ from pynput.keyboard import Listener, Key, Controller
 
 ONE_QUARTER = 0.1 / 4
 
+text = ''
+
 keyboard = Controller()
 
+def fish(sleep_time):
+  keyboard.press(Key.space)
+  time.sleep(sleep_time)
+  keyboard.release(Key.space)
+
+def convert_key(key):
+  try:
+    if key.char == '.' and '.' not in text:
+      return key.char 
+  except:
+    return None
+
+  try:
+    number = int(key.char)
+    return key.char 
+  except:
+    return None
+
 def on_pressed(key):
+  global text 
   if key == Key.esc:
     sys.exit()
 
   try:
-    number = int(key.char)
-    if number >= 0 and number <= 9:
-      sleep_time = 0.1 * number 
-      if keyboard.alt_pressed:
-        sleep_time += ONE_QUARTER
-      elif keyboard.shift_pressed:
-        sleep_time += ONE_QUARTER * 2
-      elif keyboard.ctrl_pressed:
-        sleep_time += ONE_QUARTER * 3
-
-      keyboard.press(Key.space)
-      time.sleep(sleep_time)
-      keyboard.release(Key.space)
-  except:
+    value = convert_key(key)
+    if value is not None:
+      text += value
+    elif key == Key.up:
+      sleep_time = 0.1 * float(text)
+      print(f'fishing for {sleep_time} seconds')
+      fish(sleep_time)
+      text = ''
+  except Exception as e:
    # yummy
-   pass
+  #  print(e)
+    pass
 
 with Listener(on_press=on_pressed) as listener:
   listener.join()
