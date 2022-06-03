@@ -2,8 +2,8 @@
 
 # Running the script
 1. Clone the repo onto your local machine
-2. Navigate to the cloned repo
-3. Create a virtual python environment: `python -m venv fishy-boi`
+2. Navigate to the cloned repo: `cd <path/to/repo>`
+3. Create a virtual python environment if you haven't already: `python -m venv fishy-boi`
 4. Activate the virtual environment:
    1. On Windows (in a powershell terminal): `./fishy-boi/Scripts/activate.ps1`
    2. On Mac / Linux: `source ./fishy-boi/bin/activate`
