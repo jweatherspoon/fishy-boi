@@ -7,7 +7,7 @@ keyboard = Controller()
 def on_pressed(key):
   try:
     number = int(key.char)
-    if number >= 0 and number <= 7:
+    if number >= 0 and number <= 9:
       keyboard.press(Key.space)
       time.sleep(0.1 * number)
       keyboard.release(Key.space)
