@@ -35,7 +35,10 @@ def on_pressed(key):
     value = convert_key(key)
     if value is not None:
       text += value
-    elif key == Key.up:
+    elif key == Key.backspace:
+      text = ''
+      print('cleared current sleep time')
+    elif len(text) > 0 and key == Key.up:
       sleep_time = 0.2 + 0.1 * float(text)
       print(f'fishing for {sleep_time} seconds')
       fish(sleep_time)
